@@ -1,0 +1,1 @@
+Q1/ Comment faire lorsqu'on a une boucle dans les imports de hxx ? Je crois que vous aviez dit qu'on peut comtourner le problème et donnant des pointeurs en argument des fonctions, mais cela ne pose-t-il pas de problèmes pour les définitions ?
