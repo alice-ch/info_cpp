@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Partie::Partie() { cout << "Constructeur Partie defaut" << endl; }
+Partie::Partie() { cout << "Initialisation de la partie" << endl; }
 
 Partie::~Partie() { cout << "Destructeur Partie" << endl; }
 
