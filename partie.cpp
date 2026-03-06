@@ -268,7 +268,6 @@ void Partie::jouerPartie()
 
         while(!mouvementValide)
         {
-            
             Acquisition(&xDep, &yDep);
             while (!verifCoordonnees(xDep,yDep)){
                 Acquisition(&xDep, &yDep);

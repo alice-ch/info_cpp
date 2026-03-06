@@ -77,4 +77,4 @@ class Pion :  virtual public Piece
    bool mouvementValide(Echiquier &e, int x, int y);
    char codePiece();
 };
-#endif 
+#endif

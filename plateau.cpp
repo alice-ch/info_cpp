@@ -97,7 +97,7 @@ void Echiquier::affiche()
 	  if ( p == 0 )
 	    c = ( ( x + y ) % 2 ) == 0 ? '#' : '.';
 	  else
-	    c = p->codePiece();  
+	    c = p->codePiece();
 	  cout << c;
 	}
       cout << " " << y << endl;

@@ -5,7 +5,7 @@
 #include "piece.hxx"
 #include "plateau.hxx"
 
-class Joueur 
+class Joueur
 {
  protected:
   Piece m_pieces[16]; //A changer
