@@ -10,9 +10,11 @@ using namespace std;
 
 Echiquier::Echiquier()
 {
-  for(int i=0; i<64; i++)
+  for(int i=0; i<64; i++){
     m_cases[i] = NULL;
+  }
 }
+
 
 
 //Recupere la piece situee sur une case.
