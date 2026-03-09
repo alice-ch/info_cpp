@@ -69,38 +69,45 @@ int Partie::YaEchecAdv() {
   // VERIFIER SI PIECE JOUEUR ACTUEL PEUT SE DEPLACER SUR ROI ADVERSAIRE
   for (int k = 1; k <= 8; k++) {
     for (int l = 1; l <= 8; l++) {
-      if (e.getPiece(k, l) != NULL) {
-        if (joueurActuel) // joueur blanc
-        {
-          if (e.getPiece(k, l)->isWhite()) {
-            if (e.getPiece(k, l)->mouvementValide(e, rnX, rnY)) {
-              caseEchec = 2;
+      if (e.getPiece(k, l) == NULL) {
+        continue;
+      }
+      if (joueurActuel) {
+        // joueur blanc
+        if (e.getPiece(k, l)->isWhite() &&
+            e.getPiece(k, l)->mouvementValide(e, rnX, rnY)) {
+          caseEchec = 2;
 
-              // VERIFIER SI ROI ADVERSAIRE PEUT SE DEPLACER
-              for (int m = rnX - 1; rnX + 1; rnX++) {
-                for (int n = rnY - 1; rnY + 1; rnY++) {
-                  if (e.getPiece(rnX, rnY)->mouvementValide(e, m, n)) {
-                    caseEchec = 3;
-                    goto fin;
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          if (e.getPiece(k, l)->mouvementValide(e, rbX, rbY)) {
-            caseEchec = 2;
-            // VERIFIER SI ROI ADVERSAIRE PEUT SE DEPLACER
-            for (int m = rnX - 1; rnX + 1; rnX++) {
-              for (int n = rnY - 1; rnY + 1; rnY++) {
-                if (e.getPiece(rnX, rnY)->mouvementValide(e, m, n)) {
-                  caseEchec = 3;
-                  goto fin;
-                }
+          // VERIFIER SI ROI ADVERSAIRE PEUT SE DEPLACER
+          for (int m = rnX - 1; m <= rnX + 1; m++) {
+            for (int n = rnY - 1; n <= rnY + 1; n++) {
+              // TODO vérifier sortie plateau
+              if (e.getPiece(rnX, rnY)->mouvementValide(e, m, n)) {
+                // TODO echec sur la case d'arrivée
+                caseEchec = 3;
+                goto fin;
               }
             }
           }
         }
+      } else {
+        if (e.getPiece(k, l)->isBlack() &&
+            e.getPiece(k, l)->mouvementValide(e, rbX, rbY)) {
+          caseEchec = 2;
+          // VERIFIER SI ROI ADVERSAIRE PEUT SE DEPLACER
+          for (int m = rbX - 1; m <= rbX + 1; m++) {
+            for (int n = rbY - 1; n <= rbY + 1; n++) {
+              // TODO vérifier sortie plateau
+              if (e.getPiece(rbX, rbY)->mouvementValide(e, m, n)) {
+                // TODO echec sur la case d'arrivée
+                caseEchec = 3;
+                goto fin;
+              }
+            }
+          }
+        }
+        // TODO faire une fonction bool EnEchec(bool white) pour éviter d'avoir
+        // 2 blocs presque identiques
       }
     }
   }
@@ -228,7 +235,7 @@ void Partie::jouerPartie() {
   e.placer(&pn8);
 
   /** BOUCLE DE JEU **/
-  while (partieFinie == false) {
+  while (!partieFinie) {
     bool mouvementValide = false;
     int yaEchec = -1;
 
